@@ -13,7 +13,7 @@ If you want to start the Docker engine and do builds internally, add the followi
 
 ```
 RUN sysctl -w kernel.grsecurity.chroot_deny_chmod=0 && \
-        sysctl -w kernel.grsecurity.chroot_deny_mknod=0 && \
-        rc-update add docker boot && \
-        service start docker
+    sysctl -w kernel.grsecurity.chroot_deny_mknod=0 && \
+    rc-update add docker boot && \
+    service start docker
 ```
