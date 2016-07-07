@@ -7,3 +7,13 @@ If you'd like to change the Jenkins users's password, create a Dockerfile based 
 ```
 RUN echo "jenkins:password" | chpasswd
 ```
+
+
+If you want to start the Docker engine and do builds internally, add the following lines to a Dockerfile which is based on this image:
+
+```
+RUN sysctl -w kernel.grsecurity.chroot_deny_chmod=0 && \
+        sysctl -w kernel.grsecurity.chroot_deny_mknod=0 && \
+        rc-update add docker boot && \
+        service start docker
+```
